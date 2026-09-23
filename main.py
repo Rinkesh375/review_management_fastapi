@@ -1,9 +1,10 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from database import create_tables
-
+from routes.reviews import router as review_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    print("lifespan started.")
     create_tables()
     print("Database tables created")
     yield
@@ -16,3 +17,5 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+app.include_router(review_router)
