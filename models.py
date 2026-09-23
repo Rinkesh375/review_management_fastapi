@@ -30,3 +30,10 @@ class ReviewRead(SQLModel):
 class ReviewUpdate(SQLModel):
     rating:Optional[int] = Field(default=None,ge=1,le=5)
     comment:Optional[str] = None 
+    
+    
+    
+class AverageRatingResponse(SQLModel):
+    play_name: str
+    average_rating: float
+    total_reviews: int    
